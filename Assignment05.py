@@ -9,6 +9,8 @@
 # CMuth, 11/12/22,Added code to complete assignment 5
 # ------------------------------------------------------------------------ #
 
+from os.path import exists
+
 # -- Data -- #
 # declare variables and constants
 strData = ""  # A row of text data from the file
@@ -24,19 +26,20 @@ objFile = None  # An object that represents a file
 # Step 1 - When the program starts, load the any data you have
 # in a text file called ToDoList.txt into a python list of dictionaries rows (like Lab 5-2)
 
-#Read from the data file
-#Open the file in read mode
-objFile = open(strFile, "r")
-#Loop through rows in data file
-for row in objFile:
-    #Read data row from file as list
-    lstRow = row.split(",")
-    #Save list data to dictionary
-    dicRow = {'Task': lstRow[0], "Priority": lstRow[1].strip()}
-    #Add dictionary to table list
-    lstTable.append(dicRow)
-#When end of rows, Close file
-objFile.close()
+if exists("ToDoList.txt"):
+    #Read from the data file
+    #Open the file in read mode
+    objFile = open(strFile, "r")
+    #Loop through rows in data file
+    for row in objFile:
+        #Read data row from file as list
+        lstRow = row.split(",")
+        #Save list data to dictionary
+        dicRow = {'Task': lstRow[0], "Priority": lstRow[1].strip()}
+        #Add dictionary to table list
+        lstTable.append(dicRow)
+    #When end of rows, Close file
+    objFile.close()
 
 
 # -- Input/Output -- #
@@ -54,11 +57,12 @@ while (True):
     print()  # adding a new line for looks
     # Step 3 - Show the current items in the table
     if (strChoice.strip() == '1'):
+        print('Current items in the ToDo list:')
         if lstTable:
             # Loop through dictionaries in list
             for row in lstTable:
                 #   Print values to screen
-                print('{}\t\t{}'.format(row['Task'], row['Priority']))
+                print('{}\t({})'.format(row['Task'], row['Priority']))
         else:
             print('There are no items in the TODO list.')
     # Step 4 - Add a new item to the list/Table
