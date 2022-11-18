@@ -7,6 +7,7 @@
 # ChangeLog (Who,When,What):
 # RRoot,1.1.2030,Created started script
 # CMuth, 11/12/22,Added code to complete assignment 5
+# CMuth, 11/17/22,Added code to verify text file exists before attempting to load
 # ------------------------------------------------------------------------ #
 
 from os.path import exists
